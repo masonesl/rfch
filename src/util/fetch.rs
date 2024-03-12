@@ -22,4 +22,11 @@ pub mod fetch {
             None => "UNKNOWN".to_string(),
         }
     }
+
+    pub fn editor() -> String {
+        match env::var("EDITOR") {
+            Ok(name) => name,
+            Err(_) => "UNKNOWN".to_string(),
+        }
+    }
 }

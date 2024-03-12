@@ -6,5 +6,7 @@ fn main() {
              username = fetch::username(),
              hostname = fetch::hostname());
 
+    println!("EDITOR\t{}", fetch::editor());
+
     println!("OS\t{}", fetch::osname());
 }
