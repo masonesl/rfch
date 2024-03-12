@@ -36,4 +36,16 @@ pub mod fetch {
             Err(_) => "UNKNOWN".to_string(),
         }
     }
+
+    pub fn desktop() -> String {
+        match env::var("XDG_CURRENT_DESKTOP") {
+            Ok(name) => name,
+            Err(_) => {
+                match env::var("DESKTOP_SESSION") {
+                    Ok(name) => name,
+                    Err(_) => "UNKNOWN".to_string(),
+                }
+            }
+        }
+    }
 }

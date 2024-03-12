@@ -10,5 +10,7 @@ fn main() {
 
     println!("TERM\t{}", fetch::terminal());
 
+    println!("DESKTOP\t{}", fetch::desktop());
+
     println!("OS\t{}", fetch::osname());
 }
