@@ -6,11 +6,13 @@ fn main() {
              username = fetch::username(),
              hostname = fetch::hostname());
 
+    println!("OS\t{}", fetch::osname());
+
+    println!("KERNEL\t{}", fetch::kernel());
+
     println!("EDITOR\t{}", fetch::editor());
 
     println!("TERM\t{}", fetch::terminal());
 
     println!("DESKTOP\t{}", fetch::desktop());
-
-    println!("OS\t{}", fetch::osname());
 }
