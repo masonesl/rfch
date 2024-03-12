@@ -29,4 +29,11 @@ pub mod fetch {
             Err(_) => "UNKNOWN".to_string(),
         }
     }
+
+    pub fn terminal() -> String {
+        match env::var("TERM") {
+            Ok(name) => name,
+            Err(_) => "UNKNOWN".to_string(),
+        }
+    }
 }

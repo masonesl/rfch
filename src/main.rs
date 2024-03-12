@@ -8,5 +8,7 @@ fn main() {
 
     println!("EDITOR\t{}", fetch::editor());
 
+    println!("TERM\t{}", fetch::terminal());
+
     println!("OS\t{}", fetch::osname());
 }
