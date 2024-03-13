@@ -15,4 +15,6 @@ fn main() {
     println!("TERM\t{}", fetch::terminal());
 
     println!("DESKTOP\t{}", fetch::desktop());
+
+    println!("SHELL\t{}", fetch::shell());
 }

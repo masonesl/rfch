@@ -1,5 +1,5 @@
 pub mod fetch {
-    use std::env;
+    use std::{env, path};
     use sysinfo::System;
 
     pub fn username() -> String {
@@ -53,6 +53,23 @@ pub mod fetch {
                     Err(_) => "UNKNOWN".to_string(),
                 }
             }
+        }
+    }
+
+    pub fn shell() -> String {
+        // attempt to read the SHELL environment variable
+        match env::var("SHELL") {
+            Ok(shell_path) => {
+                // convert the shell binary path to Path object and grab the actual binary name
+                match path::Path::new(&shell_path).file_name() {
+                    Some(shell_name) => match shell_name.to_str() {
+                        Some(shell_name_str) => shell_name_str.to_string(),
+                        None => "UNKNOWN".to_string()
+                    },
+                    None => "UNKNOWN".to_string(),
+                }
+            },
+            Err(_) => "UNKNOWN".to_string(),
         }
     }
 }
