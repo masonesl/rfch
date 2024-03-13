@@ -61,4 +61,12 @@ pub mod fetch {
             Err(_) => unknown!(),
         };
     }
+
+    pub fn cpu(system_info: &System) -> String {
+        // get the cpu name from the first core
+        return system_info
+            .cpus()[0]
+            .brand()
+            .to_string();
+    }
 }
