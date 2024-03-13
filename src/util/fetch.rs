@@ -8,6 +8,12 @@ pub mod fetch {
         };
     }
 
+    pub struct Uptime {
+        pub days:    u64,
+        pub hours:   u64,
+        pub minutes: u64,
+    }
+
     pub fn username() -> String {
         return env::var("USER")
             .unwrap_or(unknown!());
@@ -68,5 +74,23 @@ pub mod fetch {
             .cpus()[0]
             .brand()
             .to_string();
+    }
+
+    pub fn uptime() -> Uptime {
+        let uptime_seconds: u64 = System::uptime();
+
+        let mut minutes: u64 = uptime_seconds / 60;
+
+        let mut hours: u64 = minutes / 60;
+        minutes %= 60;
+
+        let days: u64 = hours / 24;
+        hours %= 24;
+
+        return Uptime {
+            days,
+            hours,
+            minutes,
+        };   
     }
 }

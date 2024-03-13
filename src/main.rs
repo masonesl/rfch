@@ -29,4 +29,12 @@ fn main() {
     println!("SHELL\t{}", fetch::shell());
 
     println!("CPU\t{}", fetch::cpu(&system_info));
+
+    let uptime: fetch::Uptime = fetch::uptime();
+    println!(
+        "UP\t{day}d {hour}h {min}m",
+        day  = uptime.days,
+        hour = uptime.hours,
+        min  = uptime.minutes,
+    );
 }
