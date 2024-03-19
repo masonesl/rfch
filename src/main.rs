@@ -37,4 +37,10 @@ fn main() {
         hour = uptime.hours,
         min  = uptime.minutes,
     );
+
+    let memory: fetch::Memory = fetch::memory(&system_info);
+    println!(
+        "MEM\t{used:.2}/{total:.2} GiB",
+        used  = memory.used,
+        total = memory.total)
 }

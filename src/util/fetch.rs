@@ -14,6 +14,11 @@ pub mod fetch {
         pub minutes: u64,
     }
 
+    pub struct Memory {
+        pub total: f64,
+        pub used:  f64,
+    }
+
     pub fn username() -> String {
         return env::var("USER")
             .unwrap_or(unknown!());
@@ -47,7 +52,7 @@ pub mod fetch {
     pub fn desktop() -> String {
         return env::var("XDG_CURRENT_DESKTOP")
             .unwrap_or_else(|_| env::var("DESKTOP_SESSION")
-                            .unwrap_or(unknown!()));
+                                .unwrap_or(unknown!()));
     }
 
     pub fn shell() -> String {
@@ -92,5 +97,19 @@ pub mod fetch {
             hours,
             minutes,
         };   
+    }
+
+    pub fn memory(system_info: &System) -> Memory {
+        let mut total: f64 = system_info.total_memory() as f64;
+        let mut used:  f64 = system_info.used_memory()  as f64;
+
+        // Convert bytes to GiB
+        total = total / 1024_f64.powf(3.0); 
+        used  = used  / 1024_f64.powf(3.0); 
+
+        return Memory {
+            total,
+            used,
+        };
     }
 }
